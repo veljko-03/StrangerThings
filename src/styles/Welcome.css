@@ -5,6 +5,7 @@
   background-position: center;
   position: relative;
   overflow: hidden;
+  touch-action: none;
 }
 
 .fire-reveal {

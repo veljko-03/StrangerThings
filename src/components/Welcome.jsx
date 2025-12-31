@@ -4,7 +4,13 @@ import useFireReveal from '../hooks/useFireReveal'
 import '../styles/Welcome.css'
 
 const Welcome = () => {
-  const { revealRef, onMouseMove, onMouseLeave } = useFireReveal()
+  const {
+    revealRef,
+    onMouseMove,
+    onMouseLeave,
+    onTouchMove,
+    onTouchEnd,
+  } = useFireReveal()
 
   const containerVariants = {
     hidden: {},
@@ -31,6 +37,8 @@ const Welcome = () => {
       className="hero"
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
     >
       <motion.div
         className="hero-content"

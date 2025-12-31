@@ -24,11 +24,10 @@ const useFireReveal = () => {
     animate()
   }, [])
 
-  const onMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-
-    mouse.current.x = e.clientX - rect.left
-    mouse.current.y = e.clientY - rect.top
+  const updatePosition = (x, y, target) => {
+    const rect = target.getBoundingClientRect()
+    mouse.current.x = x - rect.left
+    mouse.current.y = y - rect.top
 
     if (!visible.current) {
       visible.current = true
@@ -36,7 +35,22 @@ const useFireReveal = () => {
     }
   }
 
+  const onMouseMove = (e) => {
+    updatePosition(e.clientX, e.clientY, e.currentTarget)
+  }
+
+  const onTouchMove = (e) => {
+    if (!e.touches.length) return
+    const touch = e.touches[0]
+    updatePosition(touch.clientX, touch.clientY, e.currentTarget)
+  }
+
   const onMouseLeave = () => {
+    visible.current = false
+    revealRef.current?.classList.remove('active')
+  }
+
+  const onTouchEnd = () => {
     visible.current = false
     revealRef.current?.classList.remove('active')
   }
@@ -45,6 +59,8 @@ const useFireReveal = () => {
     revealRef,
     onMouseMove,
     onMouseLeave,
+    onTouchMove,
+    onTouchEnd,
   }
 }
 
