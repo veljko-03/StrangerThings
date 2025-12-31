@@ -1,58 +1,10 @@
-import { useEffect, useRef } from 'react'
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import useFireReveal from '../hooks/useFireReveal'
 import '../styles/Welcome.css'
 
 const Welcome = () => {
-  const heroRef = useRef(null)
-  const revealRef = useRef(null)
-
-  useEffect(() => {
-    const hero = heroRef.current
-    const reveal = revealRef.current
-    if (!hero || !reveal) return
-
-    let mouseX = 0
-    let mouseY = 0
-    let currentX = 0
-    let currentY = 0
-    let isVisible = false
-
-    const animate = () => {
-      currentX += (mouseX - currentX) * 0.05
-      currentY += (mouseY - currentY) * 0.05
-
-      reveal.style.setProperty('--x', `${currentX}px`)
-      reveal.style.setProperty('--y', `${currentY}px`)
-
-      requestAnimationFrame(animate)
-    }
-
-    const handleMouseMove = (e) => {
-      const rect = hero.getBoundingClientRect()
-      mouseX = e.clientX - rect.left
-      mouseY = e.clientY - rect.top
-
-      if (!isVisible) {
-        isVisible = true
-        reveal.classList.add('active')
-      }
-    }
-
-    const handleMouseLeave = () => {
-      isVisible = false
-      reveal.classList.remove('active')
-    }
-
-    animate()
-    hero.addEventListener('mousemove', handleMouseMove)
-    hero.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      hero.removeEventListener('mousemove', handleMouseMove)
-      hero.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
+  const { revealRef, onMouseMove, onMouseLeave } = useFireReveal()
 
   const containerVariants = {
     hidden: {},
@@ -75,7 +27,11 @@ const Welcome = () => {
   }
 
   return (
-    <div className="hero" ref={heroRef}>
+    <div
+      className="hero"
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
       <motion.div
         className="hero-content"
         variants={containerVariants}
