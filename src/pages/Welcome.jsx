@@ -1,9 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import useFireReveal from '../hooks/useFireReveal'
 import '../styles/Welcome.css'
 
 const Welcome = () => {
+  const navigate = useNavigate()
   const {
     revealRef,
     onMouseMove,
@@ -11,6 +13,10 @@ const Welcome = () => {
     onTouchMove,
     onTouchEnd,
   } = useFireReveal()
+
+    const handleEnter = () => {
+    navigate('/home')
+  }
 
   const containerVariants = {
     hidden: {},
@@ -55,7 +61,7 @@ const Welcome = () => {
             Some doors, once opened, can never be closed.
           </motion.p>
 
-          <motion.button className="st-btn" variants={itemVariants}>
+          <motion.button className="st-btn" variants={itemVariants} onClick={handleEnter}>
             Enter the Upside Down
           </motion.button>
         </motion.div>
