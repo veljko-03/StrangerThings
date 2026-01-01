@@ -20,8 +20,33 @@ class Particle {
   }
 }
 
+class Lightning {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.reset();
+  }
+
+  reset() {
+    this.x = Math.random() * this.canvas.width;
+    this.y = 0;
+    this.life = Math.random() * 10 + 10;
+    this.opacity = Math.random() * 0.6 + 0.4;
+    this.segments = [];
+
+    let y = 0;
+    let x = this.x;
+
+    while (y < this.canvas.height) {
+      this.segments.push({ x, y });
+      x += Math.random() * 40 - 20;
+      y += Math.random() * 40 + 20;
+    }
+  }
+}
+
 const UpsideDown = () => {
   const canvasRef = useRef(null);
+  let lightnings = [];
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -101,6 +126,32 @@ const UpsideDown = () => {
       ctx.restore();
     };
 
+    const drawLightning = (l) => {
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(l.segments[0].x, l.segments[0].y);
+
+      for (let i = 1; i < l.segments.length; i++) {
+        ctx.lineTo(l.segments[i].x, l.segments[i].y);
+      }
+
+      ctx.strokeStyle = `rgba(255, 30, 30, ${l.opacity})`;
+      ctx.lineWidth = 13 + Math.random() * 13;
+      ctx.shadowBlur = 20 + ctx.lineWidth * 2;
+      ctx.shadowColor = "rgba(255, 0, 0, 0.8)";
+      ctx.stroke();
+      ctx.restore();
+
+      l.life--;
+      l.opacity *= 0.92;
+    };
+
+    const spawnLightning = () => {
+      if (Math.random() < 0.02) {
+        lightnings.push(new Lightning(canvas));
+      }
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -110,6 +161,15 @@ const UpsideDown = () => {
           m++;
         }
         drawParticle(particles[i]);
+      }
+
+      spawnLightning();
+
+      for (let i = lightnings.length - 1; i >= 0; i--) {
+        drawLightning(lightnings[i]);
+        if (lightnings[i].life <= 0) {
+          lightnings.splice(i, 1);
+        }
       }
 
       animationId = requestAnimationFrame(animate);
@@ -123,6 +183,7 @@ const UpsideDown = () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
