@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import '../styles/HomePage.css'
+import Navbar from '../components/NavBar'
 
 class Tree {
   constructor(canvas) {
@@ -142,6 +143,7 @@ const HomePage = () => {
 
   return (
     <div className="home">
+        <Navbar />
       <canvas ref={canvasRef} />
     </div>
   )
