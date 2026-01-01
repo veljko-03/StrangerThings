@@ -1,0 +1,20 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  background-image: linear-gradient(
+    to top,
+    hsl(204, 80%, 15%) 35%,
+    hsl(192, 84%, 32%) 42.5%,
+    hsl(193, 71%, 41%) 50%,
+    hsl(189, 95%, 56%) 100%
+  );
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
