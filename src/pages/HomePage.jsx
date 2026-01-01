@@ -11,7 +11,7 @@ class Tree {
   }
 }
 
-class Dust {
+class Particles {
   constructor(canvas) {
     this.canvas = canvas
     this.width = Math.random() * 5 + 1
@@ -29,7 +29,7 @@ const HomePage = () => {
     const context = canvas.getContext('2d')
 
     let treeArray = []
-    let dustArray = []
+    let particlesArray = []
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -53,16 +53,16 @@ const HomePage = () => {
       }
     }
 
-    const moveDust = (dust) => {
-      dust.positionX += (dust.width / 4) * 3 + 1
-      dust.positionY -= 1
+    const moveParticles = (particles) => {
+      particles.positionX += (particles.width / 4) * 3 + 1
+      particles.positionY -= 1
 
-      if (dust.positionX > canvas.width) dust.positionX = -dust.width
-      if (dust.positionY < 0) {
-        dust.positionY = canvas.height - dust.width
-        dust.opacity = 0
-      } else if (dust.opacity < 1) {
-        dust.opacity += 0.005
+      if (particles.positionX > canvas.width) particles.positionX = -particles.width
+      if (particles.positionY < 0) {
+        particles.positionY = canvas.height - particles.width
+        particles.opacity = 0
+      } else if (particles.opacity < 1) {
+        particles.opacity += 0.005
       }
     }
 
@@ -104,13 +104,13 @@ const HomePage = () => {
       moveTree(tree)
     }
 
-    const drawDust = (dust) => {
-      moveDust(dust)
+    const drawParticles = (particles) => {
+      moveParticles(particles)
 
       context.save()
       context.beginPath()
-      context.arc(dust.positionX, dust.positionY, dust.width, 0, Math.PI * 2)
-      context.fillStyle = `rgba(255,255,255,${dust.opacity})`
+      context.arc(particles.positionX, particles.positionY, particles.width, 0, Math.PI * 2)
+      context.fillStyle = `rgba(255,255,255,${particles.opacity})`
       context.shadowBlur = 10
       context.shadowColor = 'white'
       context.fill()
@@ -121,19 +121,19 @@ const HomePage = () => {
     const draw = () => {
       context.clearRect(0, 0, canvas.width, canvas.height)
 
-      for (let i = 0, m = 0; i < dustArray.length; i++) {
+      for (let i = 0, m = 0; i < particlesArray.length; i++) {
         if (i % 6 === 0) {
           drawTree(treeArray[m])
           m++
         }
-        drawDust(dustArray[i])
+        drawParticles(particlesArray[i])
       }
 
       requestAnimationFrame(draw)
     }
 
     createObjects(treeArray, Tree, 15)
-    createObjects(dustArray, Dust, 90)
+    createObjects(particlesArray, Particles, 90)
     draw()
 
     return () => {
