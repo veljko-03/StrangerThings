@@ -22,6 +22,7 @@
 .swiper {
   width: 100%;
   padding: 50px 0;
+  overflow: visible;
 }
 
 .swiper-slide {
@@ -109,4 +110,48 @@
   width: 32px;
   background-color: #6f1223;
   border-radius: 14px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+
+  .swiper {
+    padding: 20px 0 40px;
+  }
+
+  .swiper-slide {
+    width: 100% !important;
+    height: 70vh;
+    border-radius: 0;
+  }
+
+  .swiper-slide img {
+    transform: none !important;
+    object-position: center;
+  }
+
+  .swiper-slide-active {
+    width: 100% !important;
+  }
+
+    .swiper-slide p,
+  .swiper-slide span {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+  }
+
+  .swiper-slide p {
+    bottom: 44px;
+    font-size: 1.1rem;
+  }
+
+  .swiper-slide span {
+    bottom: 18px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+  }
 }

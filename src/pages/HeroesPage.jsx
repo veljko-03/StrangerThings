@@ -88,13 +88,21 @@ const HeroesPage = () => {
           modules={[Pagination, Mousewheel]}
           grabCursor
           centeredSlides
-          slidesPerView="auto"
-          spaceBetween={10}
           speed={1000}
           initialSlide={4}
           mousewheel={{ thresholdDelta: 30 }}
           pagination={{ clickable: true }}
           onClick={(swiper) => swiper.slideTo(swiper.clickedIndex)}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
+            768: {
+              slidesPerView: "auto",
+              spaceBetween: 10,
+            },
+          }}
           className="swiper"
         >
           {heroes.map((hero, index) => (
