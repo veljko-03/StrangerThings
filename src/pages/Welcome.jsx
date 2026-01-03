@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
-import useFireReveal from '../hooks/useFireReveal'
-import '../styles/Welcome.css'
+import { motion } from "framer-motion"
+import { useNavigate } from "react-router-dom"
+import useFireReveal from "../hooks/useFireReveal"
+import "../styles/Welcome.css"
 
 const Welcome = () => {
   const navigate = useNavigate()
