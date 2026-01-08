@@ -4,6 +4,7 @@ import Navbar from "../components/NavBar";
 import SeasonCollapsableList from "../components/SeasonCollapsableList";
 import { season1 } from "../assets/data/episodes/season1";
 import { season2 } from "../assets/data/episodes/season2";
+import { season3 } from "../assets/data/episodes/season3";
 
 const EpisodesPage = () => (
   <div className="episodes-page">
@@ -13,6 +14,7 @@ const EpisodesPage = () => (
     <div className="episodes-container">
       <SeasonCollapsableList title="Season 1" episodes={season1} />
       <SeasonCollapsableList title="Season 2" episodes={season2} />
+      <SeasonCollapsableList title="Season 3" episodes={season3} />
     </div>
   </div>
 );
