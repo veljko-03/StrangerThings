@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+.season {
+  width: 100%;
+  margin: 0 0 40px 0;
+}
+
+/* Season button */
+.season-toggle {
+  width: 100%;
+  padding: 18px 24px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 12px;
+  font-family: "ITC Benguiat Std", serif;
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  color: #ff2d2d;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  transition: background 0.3s ease;
+}
+
+.season-toggle:hover {
+  background: rgba(50, 0, 0, 0.7);
+}
+
+.arrow {
+  font-size: 2rem;
+}
+
+/* Episodes list */
+.episodes-list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Episode item */
+.episode-item {
+  display: flex;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Thumbnail */
+.episode-item img {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text */
+.episode-content {
+  padding: 16px;
+}
+
+.episode-content h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-family: "Poppins", sans-serif;
+}
+
+.episode-content p {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .episode-item {
+    flex-direction: column;
+  }
+
+  .episode-item img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .season-toggle {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+}
+
+@media (hover: hover) {
+  .episode-item:hover {
+    transform: scale(1.07);
+    box-shadow: 0 12px 40px rgba(255, 45, 45, 0.45),
+      0 0 30px rgba(255, 45, 45, 0.25);
+  }
+}
