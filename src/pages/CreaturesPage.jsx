@@ -1,29 +1,7 @@
 import "../styles/CreaturesPage.css";
+import { creatures } from "../assets/data/creatures";
 import UpsideDown from "../components/UpsideDown";
 import Navbar from "../components/NavBar";
-
-const creatures = [
-  {
-    name: "Mind Flayer",
-    img: "/images/mind-flayer.webp",
-  },
-  {
-    name: "Vecna",
-    img: "/images/vecna2.webp",
-  },
-  {
-    name: "Demogorgon",
-    img: "/images/demogorgon.webp",
-  },
-  {
-    name: "Demodog",
-    img: "/images/demodog.jpg",
-  },
-  {
-    name: "Demobat",
-    img: "/images/demobat.webp",
-  },
-];
 
 const CreaturesPage = () => (
   <div className="creatures-page">
