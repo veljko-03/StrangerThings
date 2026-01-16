@@ -1,157 +1,119 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
 .heroes-page {
-  position: relative;
   min-height: 100vh;
+  padding: 20px 40px 80px;
   font-family: "Poppins", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #111113;
-  background-image: radial-gradient(
-    circle at top left,
-    #950923 10%,
-    #111113 30%
-  );
 }
 
-.container {
-  width: 80%;
+.heroes-title {
+  text-align: center;
+  font-family: "ITC Benguiat Std", serif;
+  font-size: 3rem;
+  letter-spacing: 6px;
+  color: #ff2d2d;
+  margin-bottom: 60px;
 }
 
-.swiper {
-  width: 100%;
-  padding: 50px 0;
-  overflow: visible;
+.heroes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 48px;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
-.swiper-slide {
+.hero-card {
   position: relative;
-  width: 200px;
-  height: 500px;
-  border-radius: 12px;
+  height: 560px;
+  border-radius: 18px;
   overflow: hidden;
-  transition: 1s;
-  user-select: none;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
-.swiper-slide::after {
+.hero-card::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    120deg,
-    rgba(130, 13, 13, 0.8),
-    rgba(39, 8, 92, 0.8)
+    to top,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0)
   );
-  mix-blend-mode: multiply;
   z-index: 1;
 }
 
-.swiper-slide img {
+.hero-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: 1s;
+  transition: transform 0.6s ease;
 }
 
-.swiper-slide p,
-.swiper-slide span {
+.hero-info {
   position: absolute;
+  bottom: 20px;
   left: 20px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  right: 20px;
   z-index: 2;
-  opacity: 0;
-  transform: rotate(360deg) scale(0);
-  transition: 0.8s;
 }
 
-.swiper-slide p {
-  bottom: 40px;
+.hero-info h2 {
+  font-family: "ITC Benguiat Std", serif;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
   color: #fff;
-  font-size: 1.3rem;
+  margin-bottom: 6px;
 }
 
-.swiper-slide span {
-  bottom: 10px;
-  color: #ababab;
-  font-size: 1.2rem;
+.hero-info p {
+  font-size: 1rem;
+  color: #ccc;
 }
 
-.swiper-slide-active {
-  width: 350px;
+/* Hover effects (desktop only) */
+@media (hover: hover) {
+  .hero-card:hover {
+    transform: scale(1.05);
+    box-shadow:
+      0 18px 60px rgba(255, 45, 45, 0.45),
+      0 0 30px rgba(255, 45, 45, 0.25);
+  }
+
+  .hero-card:hover img {
+    transform: scale(1.12);
+  }
 }
 
-.swiper-slide-active::after {
-  background: rgba(123, 123, 123, 0.4);
-}
-
-.swiper-slide-active img {
-  transform: scale(1.3);
-  object-position: 50% 0%;
-}
-
-.swiper-slide-active p,
-.swiper-slide-active span {
-  transform: rotate(0deg) scale(1);
-  opacity: 1;
-}
-
-.swiper-pagination-bullet {
-  width: 16px;
-  height: 16px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: all 0.6s ease-in-out;
-}
-
-.swiper-pagination-bullet-active {
-  width: 32px;
-  background-color: #6f1223;
-  border-radius: 14px;
-}
-
+/* Responsivness */
 @media (max-width: 768px) {
-  .container {
-    width: 100%;
+  .heroes-page {
+    padding: 100px 20px 60px;
   }
 
-  .swiper {
-    padding: 20px 0 40px;
+  .heroes-title {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
   }
 
-  .swiper-slide {
-    width: 100% !important;
-    height: 70vh;
-    border-radius: 0;
+  .hero-card {
+    height: 460px;
   }
 
-  .swiper-slide img {
-    transform: none !important;
-    object-position: center;
+  .heroes-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
+}
 
-  .swiper-slide-active {
-    width: 100% !important;
-  }
-
-    .swiper-slide p,
-  .swiper-slide span {
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: 100%;
-  }
-
-  .swiper-slide p {
-    bottom: 44px;
-    font-size: 1.1rem;
-  }
-
-  .swiper-slide span {
-    bottom: 18px;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
+@media (min-width: 1400px) {
+  .heroes-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
