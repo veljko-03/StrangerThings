@@ -20,7 +20,7 @@ export const season5 = [
   {
     id: 4,
     title: "Chapter Four: Sorcerer",
-    description: "The military tighten their grip on the town as Mike, Lucas and Robin orchestrate a daring escape; El confronts the enemy face to face.",
+    description: "The military tighten their grip on the town as Mike, Lucas, Will and Robin orchestrate a daring escape; El confronts the enemy face to face.",
     thumbnail: "/images/thumbnails/s5/s5e4.jpg",
   },
   {
